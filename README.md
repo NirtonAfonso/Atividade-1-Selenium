@@ -86,6 +86,14 @@ Antes de automatizar, abra o arquivo HTML no navegador e teste manualmente:
 
 ### Passo 4: Criar estrutura no Eclipse
 
+Ao criar seu projeto Maven adicione as seguintes informaçãoes do `groupoId`, `artifactId` e `version`:
+
+```
+<groupId>com.aula.selenium</groupId>
+<artifactId>atividade1-selenium</artifactId>
+<version>1.0-SNAPSHOT</version>
+```
+
 No seu projeto Maven, crie o pacote:
 ```
 src/main/java/com/atividade/selenium/
@@ -93,11 +101,40 @@ src/main/java/com/atividade/selenium/
 
 Dentro deste pacote você criará suas classes de teste.
 
+### Passo 5: Adicione as dependências no arquivo pom.xml do seu projeto Maven
+
+No seu arquivo pom.xml adicione as seguintes dependencias antes de fechar a tag `<\project>`:
+```
+ <!-- Definindo versão do Java -->
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+    
+    <!-- Bibliotecas necessárias -->
+    <dependencies>
+        <!-- Selenium WebDriver - biblioteca principal -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.14.0</version>
+        </dependency>
+        
+        <!-- WebDriverManager - facilita configuração dos drivers -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.5.3</version>
+        </dependency>
+    </dependencies>
+```
+
+
 ---
 
 ## 🎯 Desafios da Atividade
 
-### ✅ Desafio 1: Login com Dados Válidos (25 pontos)
+### ✅ Desafio 1: Login com Dados Válidos
 
 **Objetivo:** Automatizar um login bem-sucedido e documentar com screenshot.
 
@@ -115,19 +152,13 @@ Dentro deste pacote você criará suas classes de teste.
    - Captura um screenshot
    - Imprime no console todas as ações realizadas
 
-**Critérios de avaliação:**
-- ✅ Código executa sem erros (10 pontos)
-- ✅ Todos os campos são preenchidos corretamente (5 pontos)
-- ✅ Mensagem de sucesso é verificada (5 pontos)
-- ✅ Screenshot é capturado e salvo (5 pontos)
-
 **Entrega esperada:**
 - Arquivo: `Desafio1LoginValido.java`
 - Screenshot: `desafio1-sucesso.png`
 
 ---
 
-### ✅ Desafio 2: Login com Dados Inválidos (25 pontos)
+### ✅ Desafio 2: Login com Dados Inválidos
 
 **Objetivo:** Testar que o sistema rejeita credenciais incorretas.
 
@@ -145,19 +176,13 @@ Dentro deste pacote você criará suas classes de teste.
    - Captura screenshot do erro
    - Imprime no console o texto da mensagem de erro
 
-**Critérios de avaliação:**
-- ✅ Código executa sem erros (10 pontos)
-- ✅ Dados inválidos são testados (5 pontos)
-- ✅ Mensagem de erro é verificada (5 pontos)
-- ✅ Screenshot do erro é capturado (5 pontos)
-
 **Entrega esperada:**
 - Arquivo: `Desafio2LoginInvalido.java`
 - Screenshot: `desafio2-erro.png`
 
 ---
 
-### ✅ Desafio 3: Validação de Campos Vazios (25 pontos)
+### ✅ Desafio 3: Validação de Campos Vazios
 
 **Objetivo:** Verificar que o sistema não permite login sem preencher os campos.
 
@@ -173,19 +198,13 @@ Dentro deste pacote você criará suas classes de teste.
    - Captura screenshot
    - Imprime no console que a validação funcionou
 
-**Critérios de avaliação:**
-- ✅ Código executa sem erros (10 pontos)
-- ✅ Teste sem preencher campos (5 pontos)
-- ✅ Validação é verificada (5 pontos)
-- ✅ Screenshot é capturado (5 pontos)
-
 **Entrega esperada:**
 - Arquivo: `Desafio3CamposVazios.java`
 - Screenshot: `desafio3-campos-vazios.png`
 
 ---
 
-### ✅ Desafio 4: Login Sem Selecionar Perfil (25 pontos)
+### ✅ Desafio 4: Login Sem Selecionar Perfil
 
 **Objetivo:** Testar validação quando o perfil não é selecionado.
 
@@ -203,19 +222,13 @@ Dentro deste pacote você criará suas classes de teste.
    - Captura screenshot
    - Imprime confirmação no console
 
-**Critérios de avaliação:**
-- ✅ Código executa sem erros (10 pontos)
-- ✅ Perfil não é selecionado (5 pontos)
-- ✅ Erro é verificado corretamente (5 pontos)
-- ✅ Screenshot é capturado (5 pontos)
-
 **Entrega esperada:**
 - Arquivo: `Desafio4SemPerfil.java`
 - Screenshot: `desafio4-sem-perfil.png`
 
 ---
 
-## 🏆 Desafio BÔNUS (20 pontos extras)
+## 🏆 Desafio BÔNUS
 
 **Objetivo:** Criar uma bateria completa de testes com relatório.
 
@@ -228,11 +241,6 @@ Dentro deste pacote você criará suas classes de teste.
    - Conta quantos testes passaram e quantos falharam
    - Gera um relatório no console com estatísticas
    - Salva screenshots com timestamp para organização
-
-**Critérios de avaliação:**
-- ✅ Todos os 4 testes executam (10 pontos)
-- ✅ Relatório é gerado corretamente (5 pontos)
-- ✅ Screenshots organizados com timestamp (5 pontos)
 
 **Entrega esperada:**
 - Arquivo: `DesafioBonusRelatorio.java`
@@ -316,21 +324,6 @@ try {
     driver.quit(); // SEMPRE fechar o navegador
 }
 ```
-
----
-
-## 📊 Sistema de Pontuação
-
-| Desafio | Pontos | Obrigatório? |
-|---------|--------|--------------|
-| Desafio 1: Login Válido | 25 | ✅ Sim |
-| Desafio 2: Login Inválido | 25 | ✅ Sim |
-| Desafio 3: Campos Vazios | 25 | ✅ Sim |
-| Desafio 4: Sem Perfil | 25 | ✅ Sim |
-| Desafio Bônus: Relatório | 20 | ⭐ Opcional |
-| **TOTAL** | **120** | - |
-
-**Nota mínima para aprovação:** 70 pontos (70%)
 
 ---
 
